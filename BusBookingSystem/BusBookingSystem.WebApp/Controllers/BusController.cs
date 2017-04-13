@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using BusBookingSystem.Domain.EF;
 using BusBookingSystem.WebApp.ViewModels;
@@ -10,10 +13,6 @@ namespace BusBookingSystem.WebApp.Controllers
     {
         BusDetailsEntity db = new BusDetailsEntity();
 
-        public ActionResult LogIn()
-        {
-            return View();
-        }
         public ActionResult Index()
         {
             //db.BusTypes.Add(new Domain.Models.BusType { Type = "A/C" });
@@ -31,58 +30,35 @@ namespace BusBookingSystem.WebApp.Controllers
 
         public ActionResult AddBusDetails(BusDetailsViewModel mod)
         {
-            if(ModelState.IsValid)
+            if (mod.Id == 0)
             {
-                if (mod.Id == 0)
-                {
-                    BusDetails AddBusDetails = new BusDetails();
-                    AddBusDetails.BusCompanyNameId = mod.CompanyId;
-                    AddBusDetails.BusTypeId = mod.BusTypeId;
-                    AddBusDetails.OriginLocation = mod.OriginLocation;
-                    AddBusDetails.DestinationLocation = mod.DestinationLocation;
-                    AddBusDetails.NumOfChairSeats = mod.NumOfChairSeats;
-                    AddBusDetails.NumOfSleeperSeats = mod.NumOfSleeperSeats;
-                    AddBusDetails.BusNumber = mod.BusNumber;
-                    db.BusDetails.Add(AddBusDetails);
-
-                    AvailabilityDetails AvailDetails = new AvailabilityDetails();
-                    AvailDetails.BusNumber = mod.BusNumber;
-                    AvailDetails.OriginLocation = mod.OriginLocation;
-                    AvailDetails.DestinationLocation = mod.DestinationLocation;
-                    db.AvailabilityDetails.Add(AvailDetails);
-                    db.SaveChanges();
-                }
-
-                else
-                {
-                    BusDetails EditedDetails = db.BusDetails.Find(mod.Id);
-                    EditedDetails.BusCompanyNameId = mod.CompanyId;
-                    EditedDetails.BusTypeId = mod.BusTypeId;
-                    EditedDetails.OriginLocation = mod.OriginLocation;
-                    EditedDetails.DestinationLocation = mod.DestinationLocation;
-                    EditedDetails.NumOfChairSeats = mod.NumOfChairSeats;
-                    EditedDetails.NumOfSleeperSeats = mod.NumOfSleeperSeats;
-                    EditedDetails.BusNumber = mod.BusNumber;
-
-
-                    AvailabilityDetails AvailDetails = db.AvailabilityDetails.Find(mod.Id);
-                    AvailDetails.BusNumber = mod.BusNumber;
-                    AvailDetails.OriginLocation = mod.OriginLocation;
-                    AvailDetails.DestinationLocation = mod.DestinationLocation;
-
-                    db.SaveChanges();
-                }
-
-                return RedirectToAction("Index");
+                BusDetails AddBusDetails = new BusDetails();
+                AddBusDetails.BusCompanyNameId = mod.CompanyId;
+                AddBusDetails.BusTypeId = mod.BusTypeId;
+                AddBusDetails.OriginLocation = mod.OrginLocation;
+                AddBusDetails.DestinationLocation = mod.DestinationLocation;
+                AddBusDetails.NumOfChairSeats = mod.NumOfChairSeats;
+                AddBusDetails.NumOfSleeperSeats = mod.NumOfSleeperSeats;
+                AddBusDetails.BusNumber = mod.BusNumber;
+                db.BusDetails.Add(AddBusDetails);
+                db.SaveChanges();
             }
 
-            mod.BusCompanyNames = db.BusCompanyNames.ToList();
-            mod.OriginLocations = db.Locations.ToList();
-            mod.DestinationLocations = db.Locations.ToList();
-            mod.BusTypes = db.BusTypes.ToList();
-            mod.BusDetails = db.BusDetails.ToList();
-            return View("Index",mod);
-            
+            else
+            {
+                BusDetails EditedDetails = new BusDetails();
+                EditedDetails.BusCompanyNameId = mod.CompanyId;
+                EditedDetails.BusTypeId = mod.BusTypeId;
+                EditedDetails.OriginLocation = mod.OrginLocation;
+                EditedDetails.DestinationLocation = mod.DestinationLocation;
+                EditedDetails.NumOfChairSeats = mod.NumOfChairSeats;
+                EditedDetails.NumOfSleeperSeats = mod.NumOfSleeperSeats;
+                EditedDetails.BusNumber = mod.BusNumber;
+                db.BusDetails.Add(EditedDetails);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
         }
 
         public ActionResult EditBusDetails(BusDetailsViewModel mod)
@@ -90,12 +66,12 @@ namespace BusBookingSystem.WebApp.Controllers
             BusDetails EditDetails = db.BusDetails.Find(mod.Id);
             mod.CompanyId = EditDetails.BusCompanyNameId;
             mod.BusTypeId = EditDetails.BusTypeId;
-            mod.OriginLocation = EditDetails.OriginLocation;
+            mod.OrginLocation = EditDetails.OriginLocation;
             mod.DestinationLocation = EditDetails.DestinationLocation;
             mod.NumOfChairSeats = EditDetails.NumOfChairSeats;
             mod.NumOfSleeperSeats = EditDetails.NumOfSleeperSeats;
             mod.BusNumber = EditDetails.BusNumber;
-            mod.Id = EditDetails.Id;
+
             mod.BusCompanyNames = db.BusCompanyNames.ToList();
             mod.OriginLocations = db.Locations.ToList();
             mod.DestinationLocations = db.Locations.ToList();
@@ -108,18 +84,14 @@ namespace BusBookingSystem.WebApp.Controllers
         {
             BusDetails DeleteDetails = db.BusDetails.Find(mod.Id);
             db.BusDetails.Remove(DeleteDetails);
-
-            AvailabilityDetails DeleteAvailDetails = db.AvailabilityDetails.Find(mod.Id);
-            db.AvailabilityDetails.Remove(DeleteAvailDetails);
             db.SaveChanges();
             mod.Id = 0;
             return RedirectToAction("Index");
         }
 
-       
-
-     
-
-        
+        public ActionResult Availability()
+        {
+            return View();
+        }
     }
 }

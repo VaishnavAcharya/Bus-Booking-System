@@ -16,7 +16,7 @@ namespace BusBookingSystem.Domain.EF
         public DbSet<BusCompanyName> BusCompanyNames { get; set; }
         public DbSet<BusDetails> BusDetails { get; set; }
         public DbSet<Location> Locations { get; set; }
-        public DbSet<AvailabilityDetails> AvailabilityDetails { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

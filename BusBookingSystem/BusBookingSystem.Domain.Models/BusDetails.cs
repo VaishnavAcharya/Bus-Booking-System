@@ -15,7 +15,7 @@ namespace BusBookingSystem.Domain.Models
         public string  DestinationLocation { get; set; }
         public int NumOfChairSeats { get; set; }
         public int NumOfSleeperSeats { get; set; }
-        public string BusNumber { get; set; }
+        public int BusNumber { get; set; }
 
         public BusCompanyName BusCompanyName { get; set; }
         public BusType BusType { get; set; }

@@ -16,7 +16,7 @@ namespace BusBookingSystem.WebApp
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Bus", action = "LogIn", id = UrlParameter.Optional }
+                defaults: new { controller = "Bus", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
