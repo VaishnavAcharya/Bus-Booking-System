@@ -1,59 +1,85 @@
 ﻿@model BusBookingSystem.Domain.Models.AvailabilityDetails
 
-@using (Html.BeginForm("SaveAvailabilityDetails", "BusAvailability", FormMethod.Post))
+@using (Html.BeginForm("SaveAvailabilityDetails", "BusAvailability", FormMethod.Post, new { @style = "padding-top:20px" , @class= "jumbotron" }))
 {
     @Html.HiddenFor(m => m.Id)
-    <table border="1" class="jumbotron" >
-        <tr>
-            <td>
-                <p>Bus Number:</p>
-            </td>
-            <td>@Html.DisplayFor(m => m.BusNumber)</td>
-        </tr>
-        <tr>
-            <td><p>From:</p></td>
-            <td>@Html.DisplayFor(m=>m.OriginLocation)</td>
-        </tr>
-        <tr>
-            <td>To:</td>
-            <td>@Html.DisplayFor(m => m.DestinationLocation)</td>
-        </tr>
+    <div class="form-inline row " >
+        <div class="form-inline row col-sm-4">
+            @Html.Label("Bus Number:")
+            @Html.DisplayFor(m => m.BusDetails.BusNumber)
+        </div>
 
-        <tr>
-            <td colspan="2"><p>Days of Week Available</p></td>
-        </tr>
-        <tr>
-            <td>Monday</td>
-            <td>@Html.CheckBoxFor(m=>m.Monday)</td>
-        </tr>
-        <tr>
-            <td>Tuesday</td>
-            <td>@Html.CheckBoxFor(m => m.Tuesday)</td>
-        </tr>
-        <tr>
-            <td>Wednesday</td>
-            <td>@Html.CheckBoxFor(m => m.Wednesday)</td>
-        </tr>
-        <tr>
-            <td>Thursday</td>
-            <td>@Html.CheckBoxFor(m => m.Thursday)</td>
-        </tr>
-        <tr>
-            <td>Friday</td>
-            <td>@Html.CheckBoxFor(m => m.Friday)</td>
-        </tr>
-        <tr>
-            <td>Saturday</td>
-            <td>@Html.CheckBoxFor(m => m.Saturday)</td>
-        </tr>
-        <tr>
-            <td>Sunday</td>
-            <td>@Html.CheckBoxFor(m => m.Sunday)</td>
-        </tr>
-        <tr>
-            <td colspan="2" style="text-align:center"><input type="submit" value="Save" /></td>
-        </tr>
-    </table>
+        <div class="form-inline row col-sm-4">
+            @Html.Label("From:")
+            @Html.DisplayFor(m => m.OriginLocation)
+        </div>
 
+        <div class="form-inline row col-sm-4">
+            @Html.Label("To:")
+            @Html.DisplayFor(m => m.DestinationLocation)
+        </div>
+    </div>
+   
+
+    <div>
+        @Html.Label("Days of Week Available")
+    </div>
+    <div class="form-inline row col-sm-12">
+        @Html.Label("Monday",new { @class= "col-sm-2 " })
+        @Html.CheckBoxFor(m => m.Monday)
+        @Html.ValidationMessageFor(m=> m.Monday, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-inline row col-sm-12">
+        @Html.Label("Tuesday", new { @class = "col-sm-2" })
+        @Html.CheckBoxFor(m => m.Tuesday)
+        @Html.ValidationMessageFor(m => m.Tuesday,"",new { @class = "text-danger" })
+
+
+    </div>
+
+    <div class="form-inline row col-sm-12">
+        @Html.Label("Wednesday", new { @class = "col-sm-2" })
+        @Html.CheckBoxFor(m => m.Wednesday)
+        @Html.ValidationMessageFor(m => m.Wednesday,"", new { @class = "text-danger" })
+
+
+    </div>
+
+    <div class="form-inline row col-sm-12">
+        @Html.Label("Thursday", new { @class = "col-sm-2" })
+        @Html.CheckBoxFor(m => m.Thursday)
+        @Html.ValidationMessageFor(m => m.Thursday,"", new { @class = "text-danger" })
+
+
+    </div>
+
+    <div class="form-inline row col-sm-12">
+        @Html.Label("Friday", new { @class = "col-sm-2" })
+        @Html.CheckBoxFor(m => m.Friday)
+        @Html.ValidationMessageFor(m => m.Friday,"", new { @class = "text-danger" })
+
+
+    </div>
+
+    <div class="form-inline row col-sm-12">
+        @Html.Label("Saturday", new { @class = "col-sm-2" })
+        @Html.CheckBoxFor(m => m.Saturday)
+        @Html.ValidationMessageFor(m => m.Saturday,"", new { @class = "text-danger" })
+
+
+    </div>
+
+    <div class="form-inline row col-sm-12">
+        @Html.Label("Sunday", new { @class = "col-sm-2" })
+        @Html.CheckBoxFor(m => m.Sunday)
+        @Html.ValidationMessageFor(m => m.Sunday ,"", new { @class = "text-danger" })
+
+    </div>
+    <div class="form-inline col-sm-offset-6 ">
+        <input type="submit" value="Save" class="btn btn-lg btn-primary" />
+    </div>
     
+
+
 }

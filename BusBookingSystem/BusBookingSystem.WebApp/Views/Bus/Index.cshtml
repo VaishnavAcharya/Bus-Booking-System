@@ -2,25 +2,87 @@
 
 @using (Html.BeginForm("AddBusDetails", "Bus", FormMethod.Post))
 {
-    @Html.HiddenFor(m => m.Id)
-    <div class="row-fluid" style="margin-top:8%">
-        @Html.Label("Enter Bus Registration Number")
-        @Html.TextBoxFor(m => m.BusNumber)<br />
-        @Html.Label("Enter number of seated chairs")
-        @Html.TextBoxFor(m => m.NumOfChairSeats)<br />
-        @Html.Label("Enter number of Sleeper seats")
-        @Html.TextBoxFor(m => m.NumOfSleeperSeats)<br />
-        @Html.DropDownListFor(m => m.CompanyId, new SelectList(Model.BusCompanyNames, "Id", "Name",Model.CompanyId), "Select Company")<br />
-        @Html.DropDownListFor(m => m.OrginLocation, new SelectList(Model.OriginLocations, "Name", "Name"), "Select Origin Location")<br />
-        @Html.DropDownListFor(m => m.DestinationLocation, new SelectList(Model.DestinationLocations, "Name", "Name"), "Select Destination Location")<br />
-        @Html.DropDownListFor(m => m.BusTypeId, new SelectList(Model.BusTypes, "Id", "Type"), "Select Bus Type")<br />
+    <div  style="background-color:beige;padding-top:20px;padding-left:30px">
+        @Html.HiddenFor(m => m.Id)
+        <div class="form-inline row">
+            <div class="form-inline row col-sm-4 ">
+
+                @Html.Label("Bus Registration Number", new { @class = "col-sm-12 " })
+
+                @Html.TextBoxFor(m => m.BusNumber, new { @class = "form-control col-sm-12" })
+
+                @Html.ValidationMessageFor(m => m.BusNumber, "", new { @class = "text-danger" })
+
+            </div>
+
+
+            <div class="form-inline row col-sm-4">
+
+                @Html.Label("Number of seated chairs", new { @class = "col-sm-12 " })
+
+
+                @Html.TextBoxFor(m => m.NumOfChairSeats, new { @class = "form-control col-sm-12" })
+                @Html.ValidationMessageFor(m => m.NumOfChairSeats, "", new { @class = "text-danger" })
 
 
 
-        <input type="submit" class="btn btn-primary" value="Add Bus" id="btnAdd" style="display:block" /><br /><br />
-        <input type="submit" class="btn btn-primary" value="Save Changes" id="btnSaveChanges" style="display:none" /><br /><br />
+            </div>
+
+
+            <div class="form-inline row col-sm-4">
+                @Html.Label(" Number of Sleeper seats", new { @class = "col-sm-12 " })
+
+
+                @Html.TextBoxFor(m => m.NumOfSleeperSeats, new { @class = "form-control col-sm-12" })
+                @Html.ValidationMessageFor(m => m.NumOfSleeperSeats, "", new { @class = "text-danger" })
+
+
+
+            </div>
+        </div>
+
+        <div class="form-inline row">
+            <div class="form-inline row col-sm-4">
+                @Html.Label("Company Name", new { @class = "col-sm-12 " })
+                @Html.DropDownListFor(m => m.CompanyId, new SelectList(Model.BusCompanyNames, "Id", "Name", Model.CompanyId), "--------Select--------", new { @class = "dropdown-header col-sm-7" })
+                @Html.ValidationMessageFor(m => m.CompanyId, "", new { @class = "text-danger" })
+            </div>
+
+
+
+
+            <div class="form-inline row col-sm-4">
+                @Html.Label("Origin Location", new { @class = "col-sm-12 " })
+                @Html.DropDownListFor(m => m.OriginLocation, new SelectList(Model.OriginLocations, "Name", "Name"), "--------Select--------", new { @class = "dropdown-header col-sm-7" })
+                @Html.ValidationMessageFor(m => m.OriginLocation, "", new { @class = "text-danger" })
+            </div>
+
+
+            <div class="form-inline row col-sm-4">
+                @Html.Label("Destination Location", new { @class = "col-sm-12" })
+                @Html.DropDownListFor(m => m.DestinationLocation, new SelectList(Model.DestinationLocations, "Name", "Name"), "--------Select--------", new { @class = "dropdown-header col-sm-7" })
+                @Html.ValidationMessageFor(m => m.DestinationLocation, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+        <div class="form-inline row">
+            <div class="form-inline row col-sm-4">
+                @Html.Label("Bus Type", new { @class = "col-sm-12" })
+                @Html.DropDownListFor(m => m.BusTypeId, new SelectList(Model.BusTypes, "Id", "Type"), "--------Select--------", new { @class = "dropdown-header col-sm-7" })
+                @Html.ValidationMessageFor(m => m.BusTypeId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-inline col-sm-offset-8">
+            <input type="submit" class="btn btn-primary" value="Add Bus" id="btnAdd" style="display:block; margin-top:10px" />
+
+        </div>
+       
+        
+
     </div>
-    <table border="1">
+
+    <br /><br />
+    <table class="table table-striped table-hover" border="1" style="text-align:center">
         <tr>
             <th>Company Name</th>
             <th>Bus Type</th>
@@ -31,49 +93,59 @@
             <th>Sleeper Seats</th>
             <th>Bus Number</th>
             <th>Edit Details</th>
-
+            <th>Delete</th>
         </tr>
-        @foreach (var item in Model.BusDetails)
+        @foreach (var item in Model.AvailabilityDetails)
         {
 
-        <tr style="text-align:center">
-            <td>
-                @Html.Label(item.BusCompanyName.Name)
-            </td>
-            <td>
-                @Html.Label(item.BusType.Type)
-            </td>
-            <td>
-                @Html.Label(item.OriginLocation)
-            </td>
-            <td>
-                @Html.Label(item.DestinationLocation)
-            </td>
-            <td>
-                @Html.Label(item.NumOfChairSeats.ToString())
-            </td>
-            <td>
-                @Html.Label(item.NumOfSleeperSeats.ToString())
-            </td>
-            <td>
-                @Html.Label(item.BusNumber.ToString())
-            </td>
-            <td>
-                <div id="Edit">
-                    @Html.ActionLink("Edit", "EditBusDetails", new { Id = @item.Id })
-                </div>
-            </td>
-            <td>
-                @Html.ActionLink("Delete", "DeleteBusDetails", new { Id = @item.Id })
-            </td>
-        </tr>
+            <tr style="text-align:center">
+                <td>
+                    @Html.Label(item.BusDetails.BusCompanyName.Name)
+                </td>
+                <td>
+                    @Html.Label(item.BusDetails.BusType.Type)
+                </td>
+                <td>
+                    @Html.Label(item.OriginLocation)
+                </td>
+                <td>
+                    @Html.Label(item.DestinationLocation)
+                </td>
+                <td>
+                    @Html.Label(item.BusDetails.NumOfChairSeats.ToString())
+                </td>
+                <td>
+                    @Html.Label(item.BusDetails.NumOfSleeperSeats.ToString())
+                </td>
+                <td>
+                    @Html.Label(item.BusDetails.BusNumber.ToString())
+                </td>
+                <td>
+                    <div id="Edit">
+                        @Html.ActionLink("Edit", "EditBusDetails", new { Id = @item.BusDetailsId })
+                    </div>
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "DeleteBusDetails", new { Id = @item.BusDetailsId })
+                </td>
+            </tr>
 
         }
     </table>
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-    @*<script>
+
+
+
+}
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+@*<script>
         $("#btnSaveChanges").click(function () {
             $("#btnSaveChanges").hide()
             $("#btnAdd").show()
@@ -83,9 +155,3 @@
             $("#btnAdd").hide()
         });
     </script>*@
-
-
-}
-
-
-

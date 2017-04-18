@@ -124,6 +124,30 @@
     <Compile Include="Migrations\201704111203045_InitialCreate.Designer.cs">
       <DependentUpon>201704111203045_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704120653467_BusNumDataType.cs" />
+    <Compile Include="Migrations\201704120653467_BusNumDataType.Designer.cs">
+      <DependentUpon>201704120653467_BusNumDataType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704120658497_AvailDetailsAdded.cs" />
+    <Compile Include="Migrations\201704120658497_AvailDetailsAdded.Designer.cs">
+      <DependentUpon>201704120658497_AvailDetailsAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704120704160_AvailDetailsAdded1.cs" />
+    <Compile Include="Migrations\201704120704160_AvailDetailsAdded1.Designer.cs">
+      <DependentUpon>201704120704160_AvailDetailsAdded1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704131401007_dbstructurechanged.cs" />
+    <Compile Include="Migrations\201704131401007_dbstructurechanged.Designer.cs">
+      <DependentUpon>201704131401007_dbstructurechanged.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704161640019_uniquebusnumber.cs" />
+    <Compile Include="Migrations\201704161640019_uniquebusnumber.Designer.cs">
+      <DependentUpon>201704161640019_uniquebusnumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704170612081_AvailDetailsAdded2.cs" />
+    <Compile Include="Migrations\201704170612081_AvailDetailsAdded2.Designer.cs">
+      <DependentUpon>201704170612081_AvailDetailsAdded2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -136,6 +160,24 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201704111203045_InitialCreate.resx">
       <DependentUpon>201704111203045_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704120653467_BusNumDataType.resx">
+      <DependentUpon>201704120653467_BusNumDataType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704120658497_AvailDetailsAdded.resx">
+      <DependentUpon>201704120658497_AvailDetailsAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704120704160_AvailDetailsAdded1.resx">
+      <DependentUpon>201704120704160_AvailDetailsAdded1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704131401007_dbstructurechanged.resx">
+      <DependentUpon>201704131401007_dbstructurechanged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704161640019_uniquebusnumber.resx">
+      <DependentUpon>201704161640019_uniquebusnumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704170612081_AvailDetailsAdded2.resx">
+      <DependentUpon>201704170612081_AvailDetailsAdded2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

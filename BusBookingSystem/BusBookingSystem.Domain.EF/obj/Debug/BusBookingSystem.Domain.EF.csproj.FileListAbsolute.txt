@@ -39,3 +39,9 @@ c:\users\vaishnav.acharya\documents\visual studio 2015\Projects\BusBookingSystem
 c:\users\vaishnav.acharya\documents\visual studio 2015\Projects\BusBookingSystem\BusBookingSystem.Domain.EF\obj\Debug\BusBookingSystem.Domain.EF.pdb
 C:\Users\vaishnav.acharya\Documents\Visual Studio 2015\Projects\BusBookingSystem\BusBookingSystem.Domain.EF\obj\Debug\BusBookingSystem.Domain.EF.Migrations.InitialCreate.resources
 C:\Users\vaishnav.acharya\Documents\Visual Studio 2015\Projects\BusBookingSystem\BusBookingSystem.Domain.EF\obj\Debug\BusBookingSystem.Domain.EF.csproj.GenerateResource.Cache
+C:\Users\vaishnav.acharya\Documents\Visual Studio 2015\Projects\BusBookingSystem\BusBookingSystem.Domain.EF\obj\Debug\BusBookingSystem.Domain.EF.Migrations.BusNumDataType.resources
+C:\Users\vaishnav.acharya\Documents\Visual Studio 2015\Projects\BusBookingSystem\BusBookingSystem.Domain.EF\obj\Debug\BusBookingSystem.Domain.EF.Migrations.AvailDetailsAdded.resources
+C:\Users\vaishnav.acharya\Documents\Visual Studio 2015\Projects\BusBookingSystem\BusBookingSystem.Domain.EF\obj\Debug\BusBookingSystem.Domain.EF.Migrations.AvailDetailsAdded1.resources
+C:\Users\vaishnav.acharya\Documents\Visual Studio 2015\Projects\BusBookingSystem\BusBookingSystem.Domain.EF\obj\Debug\BusBookingSystem.Domain.EF.Migrations.dbstructurechanged.resources
+C:\Users\vaishnav.acharya\Documents\Visual Studio 2015\Projects\BusBookingSystem\BusBookingSystem.Domain.EF\obj\Debug\BusBookingSystem.Domain.EF.Migrations.uniquebusnumber.resources
+C:\Users\vaishnav.acharya\Documents\Visual Studio 2015\Projects\BusBookingSystem\BusBookingSystem.Domain.EF\obj\Debug\BusBookingSystem.Domain.EF.Migrations.AvailDetailsAdded2.resources

@@ -1,55 +1,53 @@
-﻿@model BusBookingSystem.WebApp.ViewModels.BusDetailsViewModel
+﻿@model BusBookingSystem.WebApp.ViewModels.BusAvailabilityViewModel
 
 
 @using (Html.BeginForm("GetBuses", "BusAvailability", FormMethod.Post))
 { <div>
-        @Html.HiddenFor(m => m.Role)
-        <div>
+       
+        <div >
             @Html.Label("Bus Route")<br />
-            <table>
-                <tr>
-                    <td>@Html.Label("From:")</td>
-                    <td>
-                        @Html.DropDownListFor(m => m.OriginLocation, new SelectList(Model.OriginLocations, "Name", "Name"), "----Select----")<br />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        @Html.Label("To:")
-                    </td>
-                    <td>
-                        @Html.DropDownListFor(m => m.DestinationLocation, new SelectList(Model.DestinationLocations, "Name", "Name"), "----Select----")<br />
-                    </td>
-                </tr>
+            <div class="form-inline row">
+                @Html.Label("From:", new { @class = "col-sm-2" })
 
-                <tr>
-                    <td>
-                        @Html.Label("Bus Type:")
-                    </td>
-                    <td>
-                        @Html.DropDownListFor(m => m.BusTypeId, new SelectList(Model.BusTypes, "Id", "Type"), "----Select----")<br />
-                    </td>
-                </tr>
-                <tr>
-                    <td>@Html.Label("Date of Travel:")</td>
-                    <td>@Html.EditorFor(m => m.DateOfJourney)</td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="submit" value="Find Buses" class="btn btn-success " />
-                    </td>
+                @Html.DropDownListFor(m => m.OriginLocation, new SelectList(Model.OriginLocations, "Name", "Name"), "--------Select--------", new { @class = "dropdown-header" })<br />
+                @Html.ValidationMessageFor(m => m.OriginLocation, "", new { @class = "text-danger" })
+            </div>
+                
+            <div class="form-inline row">
+                @Html.Label("To:", new { @class = "col-sm-2" })
 
-                </tr>
+                @Html.DropDownListFor(m => m.DestinationLocation, new SelectList(Model.DestinationLocations, "Name", "Name"), "--------Select--------", new { @class = "dropdown-header" })<br />
+                @Html.ValidationMessageFor(m => m.DestinationLocation, "", new { @class = "text-danger" })
+            </div>
+               
+            <div class="form-inline row">
+                @Html.Label("Bus Type:", new { @class = "col-sm-2" })
 
-            </table>
+                @{Html.EnableClientValidation(false);}
+                @Html.DropDownListFor(m => m.BusTypeId, new SelectList(Model.BusTypes, "Id", "Type"), "--------Select--------", new { @class = "dropdown-header" })<br />
+                @{ Html.EnableClientValidation(true);}
+            </div>
+               
+            <div class="form-inline row" style="@((string)Session["Role"] == "User" ? "" : "display : none")">
+                @Html.Label("Date of Travel:", new { @class = "col-sm-2" })
+                @Html.EditorFor(m => m.DateOfJourney, new { @class = "form-control", @type="date" })
+                @Html.ValidationMessageFor(m => m.DateOfJourney, "", new { @class = "text-danger" })
+
+
+            </div>
+               
+
+            <button type="submit" class="btn btn-info ">
+                <span class="glyphicon glyphicon-search"></span> Find Buses
+            </button>
 
 
 
-        </div><br /><br />
+            </div><br /><br />
     </div>
-    if (Model.BusDetails != null)
+    if (Model.AvailabilityDetails != null)
     {
-        <table class="table table-striped" border="1">
+        <table class="table table-striped table-hover" border="1">
             <tr>
                 <th>Company Name</th>
                 <th>Bus Type</th>
@@ -59,19 +57,19 @@
                 <th>Chair Seats</th>
                 <th>Sleeper Seats</th>
                 <th>Bus Number</th>
-                <th>Status</th>
-                <th style="@(Model.Role == "User" ? "display : none" : "")">Change Status</th>
+                @*<th>Status</th>*@
+                <th style="@((string)Session["Role"] == "User" ? "display : none" : "")">Change Status</th>
             </tr>
 
-            @foreach (var item in Model.BusDetails)
+            @foreach (var item in Model.AvailabilityDetails)
             {
 
-                <tr style="text-align:center">
+                <tr style="text-align:center" class="">
                     <td>
-                        @Html.Label(item.BusCompanyName.Name)
+                        @Html.Label(item.BusDetails.BusCompanyName.Name)
                     </td>
                     <td>
-                        @Html.Label(item.BusType.Type)
+                        @Html.Label(item.BusDetails.BusType.Type)
                     </td>
                     <td>
                         @Html.Label(item.OriginLocation)
@@ -80,20 +78,21 @@
                         @Html.Label(item.DestinationLocation)
                     </td>
                     <td>
-                        @Html.Label(item.NumOfChairSeats.ToString())
+                        @Html.Label(item.BusDetails.NumOfChairSeats.ToString())
                     </td>
                     <td>
-                        @Html.Label(item.NumOfSleeperSeats.ToString())
+                        @Html.Label(item.BusDetails.NumOfSleeperSeats.ToString())
                     </td>
                     <td>
-                        @Html.Label(item.BusNumber.ToString())
+                        @Html.Label(item.BusDetails.BusNumber.ToString())
                     </td>
-                    <td>
+                    @*<td>
+
                         <input type="button" value="Check Status" class="btn-primary" onclick="location.href='@Url.Action("CheckAvailability","BusAvailability",new { DateOfJourney= Model.DateOfJourney, Id=@item.Id})'" />
 
-                    </td>
+                    </td>*@
                     <td style="@((string)Session["Role"] == "User" ? "display : none" : "")">
-                        <input type="button" value="Add/Edit" class="btn-primary" onclick="location.href='@Url.Action("AddAvailability","BusAvailability",new { Id= @item.Id})'" />
+                        <input type="button" value="Add/Edit" class="btn btn-link" onclick="location.href='@Url.Action("AddAvailability","BusAvailability",new { Id= @item.Id , BusNumber= @item.BusDetails.BusNumber })'" />
                     </td>
                 </tr>
 
@@ -111,20 +110,7 @@
     @Styles.Render("~/Content/cssjqryUi")
     <link href="@Url.Content("~/Content/themes/base/jquery-ui.css")"
           rel="stylesheet" type="text/css" />
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-            $('input[type=datetime]').datepicker({
-                dateFormat: "dd/M/yy",
-                changeMonth: true,
-                changeYear: true,
-                yearRange: "-60:+0"
-            });
-
-        });
-
-
-    </script>
+   
 
 }
 

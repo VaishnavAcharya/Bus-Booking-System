@@ -9,9 +9,10 @@ namespace BusBookingSystem.Domain.Models
      public class AvailabilityDetails
     {
         public int Id { get; set; }
-        public string   BusNumber { get; set; }
+        public int?   BusDetailsId { get; set; }
         public string OriginLocation { get; set; }
         public string DestinationLocation { get; set; }
+        public bool IsReturn { get; set; }
         public bool Monday { get; set; }
         public bool Tuesday { get; set; }
         public bool Wednesday { get; set; }
@@ -20,6 +21,6 @@ namespace BusBookingSystem.Domain.Models
         public bool Saturday { get; set; }
         public bool Sunday { get; set; }
 
-
+        public BusDetails BusDetails { get; set; }
     }
 }
