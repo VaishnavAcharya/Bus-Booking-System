@@ -1,5 +1,0 @@
-c:\users\vaishnav.acharya\documents\visual studio 2015\Projects\BusBookingSystem\BusBookingSystem.Domain.Models\bin\Debug\BusBookingSystem.Domain.Models.dll
-c:\users\vaishnav.acharya\documents\visual studio 2015\Projects\BusBookingSystem\BusBookingSystem.Domain.Models\bin\Debug\BusBookingSystem.Domain.Models.pdb
-c:\users\vaishnav.acharya\documents\visual studio 2015\Projects\BusBookingSystem\BusBookingSystem.Domain.Models\obj\Debug\BusBookingSystem.Domain.Models.csprojResolveAssemblyReference.cache
-c:\users\vaishnav.acharya\documents\visual studio 2015\Projects\BusBookingSystem\BusBookingSystem.Domain.Models\obj\Debug\BusBookingSystem.Domain.Models.dll
-c:\users\vaishnav.acharya\documents\visual studio 2015\Projects\BusBookingSystem\BusBookingSystem.Domain.Models\obj\Debug\BusBookingSystem.Domain.Models.pdb
